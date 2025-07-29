@@ -1,0 +1,1069 @@
+openapi: 3.0.0
+servers:
+  # Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/Selcomm/Equifax/1.0
+info:
+  description: Equifax credit checking
+  version: "1.0"
+  title: Equifax
+  contact:
+    email: contactus@selectsoftware.com.au
+  license:
+    name: Apache 2.0
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+
+security:
+  - bearerAuth: []
+
+paths:
+  /IDMatrix:
+    post:
+      tags:
+        - ID Matrix
+      summary: Submit an ID Matrix request
+      description: Submit an ID Matrix request to Equifax for credit checking.
+      operationId: "/Equifax/IDMatrix#post"
+      parameters:
+        - in: query
+          name: SubmitOnly
+          required: false
+          description:
+            Request submission only.  If true, the API will submit the query and immediately.return the request ID without waiting for the response.
+
+            The consumer of the API will need to fetch the response later using the ID returned in the response.
+          schema:
+            type: boolean
+            default: false
+            example: false
+        - $ref: https://api.swaggerhub.com/domains/Selcomm/Common/1.0.0#/components/parameters/api-version1.0
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/IDMatrixRequestBody"
+      responses:
+        "201":
+          description: Success
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/IDMatrixRequestHeader"
+                  - $ref: "#/components/schemas/IDMatrixResponse"
+        "400":
+          description: Failed to due to client error
+        "401":
+          description: "Not authorised"
+        "403":
+          description: "Forbidden"
+        "500":
+          description: Failed to create due to processsing error
+  /IDMatrix/{Id}:
+    get:
+      tags:
+        - ID Matrix
+      summary: Get an ID Matrix
+      description: Get the details of an ID Matrix request by its ID.
+      operationId: "/Equifax/IDMatrix/{Id}#get"
+      parameters:
+        - in: path
+          name: Id
+          required: true
+          description: The ID of the ID Matrix request to retrieve.
+          schema:
+            type: integer
+            example: 1000
+        - $ref: https://api.swaggerhub.com/domains/Selcomm/Common/1.0.0#/components/parameters/api-version1.0
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/IDMatrixRequestHeader"
+                  - $ref: "#/components/schemas/IDMatrixRequestBody"
+                  - $ref: "#/components/schemas/IDMatrixResult"
+        "400":
+          description: Failed to due to client error
+        "401":
+          description: "Not authorised"
+        "403":
+          description: "Forbidden"
+        "500":
+          description: Failed to create due to processsing error
+  /IDMatrix/MessageId/{MessageId}:
+    get:
+      tags:
+        - ID Matrix
+      summary: Get an ID Matrix
+      description: Get the details of an ID Matrix request by its ID.
+      operationId: "/Equifax/IDMatrix/MessageId/{MessageId}#get"
+      parameters:
+        - in: path
+          name: MessageId
+          required: true
+          description: The MessageID of the IDMatrix request to retrieve.
+          schema:
+            type: integer
+            example: 1000
+        - $ref: https://api.swaggerhub.com/domains/Selcomm/Common/1.0.0#/components/parameters/api-version1.0
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/IDMatrixRequestHeader"
+                  - $ref: "#/components/schemas/IDMatrixRequestBody"
+                  - $ref: "#/components/schemas/IDMatrixResult"
+        "400":
+          description: Failed to due to client error
+        "401":
+          description: "Not authorised"
+        "403":
+          description: "Forbidden"
+        "500":
+          description: Failed to create due to processsing error
+  /IDMatrix/Result{Id}:
+    get:
+      tags:
+        - ID Matrix
+      summary: Get an ID Matrix Result
+      description: Get the results of an ID Matrix request by its ID.
+      operationId: "/Equifax/IDMatrix/Results/{Id}#get"
+      parameters:
+        - in: path
+          name: Id
+          required: true
+          description: The ID of the ID Matrix request to retrieve.
+          schema:
+            type: integer
+            example: 1000
+        - $ref: https://api.swaggerhub.com/domains/Selcomm/Common/1.0.0#/components/parameters/api-version1.0
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/IDMatrixResult"
+        "400":
+          description: Failed to due to client error
+        "401":
+          description: "Not authorised"
+        "403":
+          description: "Forbidden"
+        "500":
+          description: Failed to create due to processsing error
+  /IDMatrix/Configuration:
+    put:
+      tags:
+        - ID Matrix
+      summary: Configuration for ID Matrix
+      description: Update the configuration for ID Matrix requests.
+      operationId: "/Equifax/IDMatrix/Configuration#put"
+      parameters:
+        - $ref: https://api.swaggerhub.com/domains/Selcomm/Common/1.0.0#/components/parameters/api-version1.0
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                UserName:
+                  type: string
+                  description: User name for the ID Matrix service
+                  example: "testuser"
+                Password:
+                  type: string
+                  description: Password for the ID Matrix service
+                  example: "testpassword"
+      responses:
+        "201":
+          description: Success
+        "400":
+          description: Failed to due to client error
+        "401":
+          description: "Not authorised"
+        "403":
+          description: "Forbidden"
+        "500":
+          description: Failed to create due to processsing error
+    get:
+      tags:
+        - ID Matrix
+      summary: Configuration for ID Matrix
+      description: Get the configuration for ID Matrix requests.
+      operationId: "/Equifax/IDMatrix/Configuration#get"
+      parameters:
+        - $ref: https://api.swaggerhub.com/domains/Selcomm/Common/1.0.0#/components/parameters/api-version1.0
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  UserName:
+                    type: string
+                    description: User name for the ID Matrix service
+                    example: "testuser"
+                  Password:
+                    type: string
+                    description: Password for the ID Matrix service
+                    example: "testpassword"
+        "400":
+          description: Failed to due to client error
+        "401":
+          description: "Not authorised"
+        "403":
+          description: "Forbidden"
+        "500":
+          description: Failed to create due to processsing error
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    IDMatrixRequestHeader:
+      properties:
+        Id:
+          type: integer
+          description: Id of the ID Matrix request
+          example: 1000
+        MessageId:
+          type: string
+          description: Id of the request
+          example: "TEST_REQUEST_1"
+        RequestDateTime:
+          type: string
+          format: date-time
+          description: Date and time when the request was made
+          example: "2021-09-01T12:00:00Z"
+    IDMatrixRequestBody:
+      type: object
+      properties:
+        ClientReference:
+          type: string
+          description: Reference of the Client
+          example: "TEST_CLIENT_1"
+        Reason:
+          type: string
+          description: Readon for the ID Matrix request
+          example: "Test reason for ID Matrix request"
+        Consents:
+          type: object
+          properties:
+            VedaCreditBureau:
+              type: boolean
+              description: Consent for VEDA Credit Bureau
+              example: true
+            DriversLicence:
+              type: boolean
+              description: Consent for Drivers Licence
+              example: true
+            Medicare:
+              type: boolean
+              description: Consent for Medicare Card
+              example: true
+            AustralianPassport:
+              type: boolean
+              description: Consent for DFAT Australian Passport
+              example: boolean
+            VisaEntitlementVerificationOnline:
+              type: boolean
+              description: Consent for DIAC Visa Entitlement Verification Online
+              example: true
+        FamilyName:
+          type: string
+          description: Family name of the individual
+          example: "Potter"
+        FirstGivenName:
+          type: string
+          description: First given name of the individual
+          example: "Harry"
+        OtherGivenName:
+          type: string
+          description: Other given name of the individual
+          example: "James"
+        DateOfBirth:
+          type: string
+          format: date
+          description: Date of birth of the individual
+          example: "1980-07-31"
+        Gender:
+          type: string
+          enum:
+            - Male
+            - Female
+            - Other
+          description: Gender of the individual
+          example: "Male"
+        Addresses:
+          type: object
+          properties:
+            CurrentAddress:
+              type: object
+              properties:
+                Property:
+                  type: string
+                  description: Property name
+                  example: "Potter Manor"
+                UnitNumber:
+                  type: string
+                  description: Unit number
+                  example: "3/4"
+                StreetNumber:
+                  type: string
+                  description: Street number
+                  example: "4"
+                StreetName:
+                  type: string
+                  description: Street name
+                  example: "Privet"
+                StreetType:
+                  type: string
+                  description: Street type
+                  example: "Drive"
+                Suburb:
+                  type: string
+                  description: Suburb
+                  example: "Little Whinging"
+                State:
+                  type: string
+                  description: State
+                  example: "NSW"
+                Postcode:
+                  type: string
+                  description: Postcode
+                  example: "2999"
+                Country:
+                  type: string
+                  description: Country
+                  example: "AUS"
+                UnformattedAddress:
+                  type: string
+                  description: Unformatted address
+                  example: "Potter Manor 3/4 Privet Drive Little Whinging NSW 2999"
+            PreviousAddress:
+              type: object
+              properties:
+                Property:
+                  type: string
+                  description: Property name
+                  example: "Equifax House"
+                UnitNumber:
+                  type: string
+                  description: Unit number
+                  example: "15"
+                StreetNumber:
+                  type: string
+                  description: Street number
+                  example: "100"
+                StreetName:
+                  type: string
+                  description: Street name
+                  example: "Arthur"
+                StreetType:
+                  type: string
+                  description: Street type
+                  example: "Street"
+                Suburb:
+                  type: string
+                  description: Suburb
+                  example: "North Sydney"
+                State:
+                  type: string
+                  description: State
+                  example: "NSW"
+                Postcode:
+                  type: string
+                  description: Postcode
+                  example: "2060"
+                Country:
+                  type: string
+                  description: Country
+                  example: "AUS"
+                UnformattedAddress:
+                  type: string
+                  description: Unformatted address
+                  example: "Equifax House 15/100 Arthur Street North Sydney NSW 2060"
+                Phone:
+                  type: object
+                  properties:
+                    Numbers:
+                      type: object
+                      properties:
+                        HomePhoneNumber:
+                          type: string
+                          description: Home phone number
+                          example: "0312345678"
+                        MobilePhoneNumber:
+                          type: string
+                          description: Mobile phone number
+                          example: "0487654321"
+                        WorkPhoneNumber:
+                          type: string
+                          description: Work phone number
+                          example: "040012312"
+                    PhoneAuthentication:
+                      type: object
+                      properties:
+                        Number:
+                          type: string
+                          description: Phone number for authentication
+                          example: "0487654321"
+                        SendPinMethod:
+                          type: string
+                          description: Method to send PIN for authentication
+                          example: "SMS"
+                Employment:
+                  type: object
+                  properties:
+                    Employer:
+                      type: string
+                      description: Name of the employer
+                      example: "Star"
+                    Occupation:
+                      type: string
+                      description: Occupation of the individual
+                      example: "Casino Manager"
+                    ANZSICClassCode:
+                      type: string
+                      description: ANZSIC class code for the occupation
+                      example: "9201"
+                    EmployerABN:
+                      type: string
+                      description: ABN of the employer
+                      example: "12345678901"
+                EmailAddress:
+                  type: string
+                  description: Email address of the individual
+                  example: "harry.potter@example.com"
+                AlternativeEmailAddress:
+                  type: string
+                  description: Alternative email address of the individual
+                  example: "hpotter@example.com"
+                DriversLicenceDetails:
+                  type: object
+                  properties:
+                    StateCode:
+                      type: string
+                      description: State code of the driver's licence
+                      example: "NSW"
+                    Number:
+                      type: string
+                      description: Number of the driver's licence
+                      example: "1234567890"
+                    CardNumber:
+                      type: string
+                      description: Card number of the driver's licence
+                      example: "1234512345"
+                PassportDetails:
+                  type: object
+                  properties:
+                    CountryCode:
+                      type: string
+                      description: Country code of the passport
+                      example: "AUS"
+                    Number:
+                      type: string
+                      description: Number of the passport
+                      example: "1234567890"
+                ImmigrationDetails:
+                  type: object
+                  properties:
+                    CardNumber:
+                      type: string
+                      description: Card number
+                      example: "123456789"
+                    DateOfBirthOnCard:
+                      type: string
+                      format: date
+                      description: Date of birth on the card
+                      example: "1980"
+                CitizenshipDetails:
+                  type: object
+                  properties:
+                    StockNumber:
+                      type: string
+                      description: Stock number of the citizenship certificate
+                      example: "1234567890"
+                    DateOfAcquisition:
+                      type: string
+                      format: date
+                      description: Date of acquisition of the citizenship certificate
+                      example: "1980-07-31"
+                    DateOfBirthOnCertificate:
+                      type: string
+                      format: date
+                      description: Date of birth on the citizenship certificate
+                      example: "1980"
+                    PrimaryCountryOfCitizenship:
+                      type: string
+                      description: Primary country of citizenship
+                      example: "AUS"
+                    OtherCountryOfCitizenship:
+                      type: string
+                      description: Other country of citizenship
+                      example: "NZL"
+                RegistrationByDescentDetails:
+                  type: object
+                  properties:
+                    StockNumber:
+                      type: string
+                      description: Stock number of the registration by descent certificate
+                      example: "1234567890"
+                    DateOfAcquisition:
+                      type: string
+                      format: date
+                      description: Date of acquisition of the registration by descent certificate
+                      example: "1980-07-31"
+                    DateOfBirthOnCertificate:
+                      type: string
+                      format: date
+                      description: Date of birth on the registration by descent certificate
+                      example: "1980"
+                Medicare:
+                  type: object
+                  properties:
+                    CardNumber:
+                      type: string
+                      description: Card number of the Medicare card
+                      example: "1234567890"
+                    ReferenceNumber:
+                      type: string
+                      description: Reference number on the Medicare card
+                      example: "1"
+                    MiddleNameOnCard:
+                      type: string
+                      description: Middle name on the Medicare card
+                      example: "J"
+                    DateOfExpiry:
+                      type: string
+                      format: date
+                      description: Date of expiry of the Medicare card
+                      example: "2000-01-01"
+                    CardColour:
+                      type: string
+                      description: Colour of the Medicare card
+                      example: "B"
+                BirthCertificateDetails:
+                  type: object
+                  properties:
+                    RegistrationNumber:
+                      type: string
+                      description: Registration number of the birth certificate
+                      example: "12345679890"
+                    RegistrationState:
+                      type: string
+                      description: State of registration of the birth certificate
+                      example: "NSW"
+                    RegistrationDate:
+                      type: string
+                      format: date
+                      description: Date of registration of the birth certificate
+                      example: "1980-08-02"
+                    RegisteredName:
+                      type: object
+                      properties:
+                        FamilyName:
+                          type: string
+                          description: Family name on the birth certificate
+                          example: "Potter"
+                        FirstGivenName:
+                          type: string
+                          description: First given name on the birth certificate
+                          example: "Harry"
+                        OtherGivenName:
+                          type: string
+                          description: Other given name on the birth certificate
+                          example: "James"
+                    CertificateNumber:
+                      type: string
+                      description: Certificate number of the birth certificate
+                      example: "1234567890"
+                    DateOfPrint:
+                      type: string
+                      format: date
+                      description: Date of print of the birth certificate
+                      example: "2000-08-02"
+                    RegistrationDistrict:
+                      type: string
+                      description: District of registration of the birth certificate
+                      example: "Perth"
+                ChangeOfNameCertificateDetails:
+                  type: object
+                  properties:
+                    RegistrationNumber:
+                      type: string
+                      description: Registration number of the change of name certificate
+                      example: "12345679890"
+                    RegistrationState:
+                      type: string
+                      description: State of registration of the change of name certificate
+                      example: "NSW"
+                    RegisteredName:
+                      type: object
+                      properties:
+                        FamilyName:
+                          type: string
+                          description: Family name on the change of name certificate
+                          example: "Potter"
+                        FirstGivenName:
+                          type: string
+                          description: First given name on the change of name certificate
+                          example: "Harry"
+                        OtherGivenName:
+                          type: string
+                          description: Other given name on the change of name certificate
+                          example: "James"
+                    CertificateNumber:
+                      type: string
+                      description: Certificate number of the change of name certificate
+                      example: "1234567890"
+                    DateOfPrint:
+                      type: string
+                      format: date
+                      description: Date of print of the change of name certificate
+                      example: "2000-08-02"
+                    DateOfRegistration:
+                      type: string
+                      format: date
+                      description: Date of registration of the change of name certificate
+                      example: "2000-08-02"
+                MarriageCertificateDetails:
+                  type: object
+                  properties:
+                    RegistrationNumber:
+                      type: string
+                      description: Registration number of the marriage certificate
+                      example: "1234567890"
+                    RegistrationState:
+                      type: string
+                      description: State of registration of the marriage certificate
+                      example: "NSW"
+                    RegistrationYear:
+                      type: string
+                      description: Year of registration of the marriage certificate
+                      example: "2000"
+                    MarriageDate:
+                      type: string
+                      format: date
+                      description: Date of marriage
+                      example: "2000-02-02"
+                    BridesName:
+                      type: object
+                      properties:
+                        FamilyName:
+                          type: string
+                          description: Family name of the bride
+                          example: "Wesley"
+                        FirstGivenName:
+                          type: string
+                          description: First given name of the bride
+                          example: "Ginny"
+                    GroomsName:
+                      type: object
+                      properties:
+                        FamilyName:
+                          type: string
+                          description: Family name of the groom
+                          example: "Potter"
+                        FirstGivenName:
+                          type: string
+                          description: First given name of the groom
+                          example: "Harry"
+                        OtherGivenName:
+                          type: string
+                          description: Other given name of the groom
+                          example: "James"
+                    CertificateNumber:
+                      type: string
+                      description: Certificate number of the marriage certificate
+                      example: "1234567890"
+                    DateOfPrint:
+                      type: string
+                      format: date
+                      description: Date of print of the marriage certificate
+                      example: "2000-08-02"
+                    DateOfRegistration:
+                      type: string
+                      format: date
+                      description: Date of registration of the marriage certificate
+                      example: "2000-08-02"
+                CentrelinkDetails:
+                  type: object
+                  properties:
+                    NameAsOnCard:
+                      type: string
+                      description: Name as on the Centrelink card
+                      example: "Harry Jim Potter"
+                    CustomerReferenceNumber:
+                      type: string
+                      description: Customer reference number on the Centrelink card
+                      example: "1234567890"
+                    CardExpiry:
+                      type: string
+                      format: date
+                      description: Expiry date of the Centrelink card
+                      example: "2021-09"
+                    CardType:
+                      type: string
+                      description: Type of the Centrelink card
+                      example: "PCC"
+                DeviceIntelligenceDetails:
+                  type: object
+                  properties:
+                    OrgId:
+                      type: string
+                      description: Organisation ID for device intelligence
+                      example: "ABC123"
+                    SessionId:
+                      type: string
+                      description: Session ID for device intelligence
+                      example: "DEF456"
+                    Params:
+                      type: object
+                      properties:
+                        Param:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              Key:
+                                type: string
+                                description: Key of the parameter
+                                example: "org_id"
+                              Value:
+                                type: string
+                                description: Value of the parameter
+                                example: "ABC123"
+                GlobalScreeningDetails:
+                  type: object
+                  properties:
+                    AssociatedCountry:
+                      type: string
+                      description: Associated country for global screening
+                      example: "AUS"
+    IDMatrixResult:
+      type: object
+      properties:
+        OverallOutcome:
+          type: string
+          description: Outcome of the ID Matrix request
+          example: "ACCEPT"
+        VerificationOutcome:
+          type: string
+          description: Verification outcome of the ID Matrix request
+          example: "ACCEPT"
+        TotalPoints:
+          type: number
+          format: float
+          description: Total points scored in the ID Matrix request
+          example: 60.0
+        Status:
+          type: string
+          enum:
+            - New
+            - In Progress
+            - Completed
+            - Failed
+            - Cancelled
+          description: Status of the ID Matrix request
+          example: "New"
+        Comment:
+          type: string
+          description: Comment or additional information about the ID Matrix request
+          example: "Request is under review"
+    IDMatrixResponse:
+      type: object
+      properties:
+        OverallOutcome:
+          type: string
+          description: Outcome of the ID Matrix request
+          example: "ACCEPT"
+        VerificationOutcome:
+          type: string
+          description: Verification outcome of the ID Matrix request
+          example: "ACCEPT"
+        TotalPoints:
+          type: number
+          format: float
+          description: Total points scored in the ID Matrix request
+          example: 60.0
+        SelfVerificationUrl:
+          type: string
+          description: URL for self-verification
+          example: "https://www.idmatrix.com.au?token=guid"
+        RulesResults:
+          type: array
+          items:
+            type: object
+            properties:
+              Name:
+                type: string
+                description: Name of the rule
+                example: "OVERALL"
+              Indicator:
+                type: string
+                description: Indicator of the rule
+                example: "ACCEPT"
+              Reason:
+                type: string
+                description: Reason for the rule result
+                example: "Overall Points"
+              AnalysisResults:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    Category:
+                      type: string
+                      description: Category of the analysis result
+                      example: "KYC"
+                    SearchName:
+                      type: string
+                      description: Name of the search
+                      example: "AEC-ER-0140"
+                    RawScore:
+                      type: integer
+                      description: Raw score of the analysis result
+                      example: 100
+                    MinimumValue:
+                      type: integer
+                      description: Minimum value for the analysis result
+                      example: 90
+                    FilteredScore:
+                      type: integer
+                      description: Filtered score of the analysis result
+                      example: 100
+                    Weight:
+                      type: number
+                      format: float
+                      description: Weight of the analysis result
+                      example: 0.60
+                    Points:
+                      type: integer
+                      description: Points scored in the analysis result
+                      example: 60
+                    ContributingFactors:
+                      type: object
+                      properties:
+                        NameMatch:
+                          type: string
+                          description: Name match status
+                          example: "Y"
+                        AddressMatch:
+                          type: string
+                          description: Address match status
+                          example: "Y"
+              SearchResults:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    MatchIndicator:
+                      type: string
+                      description: Match indicator of the search result
+                      example: "PASS"
+                    MatchScore:
+                      type: integer
+                      description: Match score of the search result
+                      example: 100
+                    SearchName:
+                      type: string
+                      description: Name of the search
+                      example: "AEC-ER-0140"
+                    SearchType:
+                      type: string
+                      description: Type of the search
+                      example: "verification"
+                    ServiceResultCode:
+                      type: string
+                      description: Result code of the service
+                      example: "0"
+                    ServiceResultDetail:
+                      type: string
+                      description: Detail of the service result
+                      example: ""
+                    ServiceResultString:
+                      type: string
+                      description: String representation of the service result
+                      example: "OK"
+                    IndividualName:
+                      type: object
+                      properties:
+                        FamilyName:
+                          type: string
+                          description: Family name of the individual
+                          example: "Potter"
+                        FirstGivenName:
+                          type: string
+                          description: First given name of the individual
+                          example: "Harry"
+                        OtherGivenName:
+                          type: string
+                          description: Other given name of the individual
+                          example: "James"
+                    DateOfBirth:
+                      type: string
+                      format: date
+                      description: Date of birth of the individual
+                      example: "1980-07-31"
+                    CurrentAddress:
+                      type: object
+                      properties:
+                        Property:
+                          type: string
+                          description: Property name
+                          example: "Potter Manor"
+                        UnitNumber:
+                          type: string
+                          description: Unit number
+                          example: "3/4"
+                        StreetNumber:
+                          type: string
+                          description: Street number
+                          example: "4"
+                        StreetName:
+                          type: string
+                          description: Street name
+                          example: "Privet"
+                        StreetType:
+                          type: string
+                          description: Street type
+                          example: "Drive"
+                        Suburb:
+                          type: string
+                          description: Suburb
+                          example: "Little Whinging"
+                        State:
+                          type: string
+                          description: State
+                          example: "Surrey"
+                        Postcode:
+                          type: string
+                          description: Postcode
+                          example: "2999"
+                        Country:
+                          type: string
+                          description: Country
+                          example: "AUS"
+                        UnformattedAddress:
+                          type: string
+                          description: Unformatted address
+                          example: "Potter Manor 3/4 Privet Drive Little Whinging Surrey 2999"
+                    PhoneNumbers:
+                      type: object
+                      properties:
+                        HomePhoneNumber:
+                          type: string
+                          description: Home phone number
+                          example: "0312345678"
+                        MobilePhoneNumber:
+                          type: string
+                          description: Mobile phone number
+                          example: "0487654321"
+                        WorkPhoneNumber:
+                          type: string
+                          description: Work phone number
+                          example: "0312345678"
+              VerificationResponse:
+                type: object
+                properties:
+                  FraudAssessmentResponse:
+                    type: object
+                    properties:
+                      Score:
+                        type: number
+                        format: float
+                        description: Fraud score
+                        example: 35.0
+                      Threshold:
+                        type: number
+                        format: float
+                        description: Threshold for fraud assessment
+                        example: 79.0
+                      Result:
+                        type: string
+                        description: Result of the fraud assessment
+                        example: "FAIL"
+                  AssessmentFactors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        Type:
+                          type: string
+                          description: Type of the assessment factor
+                          example: "KYC_VLC"
+                        Score:
+                          type: number
+                          format: float
+                          description: Score of the assessment factor
+                          example: 100.0
+                        Weight:
+                          type: number
+                          format: float
+                          description: Weight of the assessment factor
+                          example: 0.30
+                        Threshold:
+                          type: number
+                          format: float
+                          description: Threshold for the assessment factor
+                          example: 50.0
+                        Result:
+                          type: string
+                          description: Result of the assessment factor
+                          example: "PASS"
+                  PhoneVerificationResponses:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        PhoneNumber:
+                          type: string
+                          description: Phone number that was verified
+                          example: "0312345678"
+                        PhoneStatus:
+                          type: string
+                          description: Status of the phone verification
+                          example: "GOOD"
+                  DeviceIntelligenceResponse:
+                    type: object
+                    properties:
+                      DeviceStatus:
+                        type: string
+                        description: Status of the device intelligence check
+                        example: "success"
+                      PolicyScore:
+                        type: integer
+                        description: Policy score from device intelligence
+                        example: 100
+                      PolicyScoreReasonCode:
+                        type: string
+                        description: Reason code for the policy score
+                        example: "WhiteList"
+                      ParamsResponse:
+                        type: object
+                        properties:
+                          Param:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                key:
+                                  type: string
+                                  description: Parameter key
+                                  example: "account_login"
+                                value:
+                                  type: string
+                                  description: Parameter value
+                                  example: "decf123"

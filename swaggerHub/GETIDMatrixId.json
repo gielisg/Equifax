@@ -1,0 +1,165 @@
+{
+  "Id": 1000,
+  "MessageId": "TEST_REQUEST_1",
+  "RequestDateTime": "2021-09-01T12:00:00Z",
+  "ClientReference": "TEST_CLIENT_1",
+  "Reason": "Test reason for ID Matrix request",
+  "Consents": {
+    "VedaCreditBureau": true,
+    "DriversLicence": true,
+    "Medicare": true,
+    "AustralianPassport": "boolean",
+    "VisaEntitlementVerificationOnline": true
+  },
+  "FamilyName": "Potter",
+  "FirstGivenName": "Harry",
+  "OtherGivenName": "James",
+  "DateOfBirth": "1980-07-31",
+  "Gender": "Male",
+  "Addresses": {
+    "CurrentAddress": {
+      "Property": "Potter Manor",
+      "UnitNumber": "3/4",
+      "StreetNumber": "4",
+      "StreetName": "Privet",
+      "StreetType": "Drive",
+      "Suburb": "Little Whinging",
+      "State": "NSW",
+      "Postcode": "2999",
+      "Country": "AUS",
+      "UnformattedAddress": "Potter Manor 3/4 Privet Drive Little Whinging NSW 2999"
+    },
+    "PreviousAddress": {
+      "Property": "Equifax House",
+      "UnitNumber": "15",
+      "StreetNumber": "100",
+      "StreetName": "Arthur",
+      "StreetType": "Street",
+      "Suburb": "North Sydney",
+      "State": "NSW",
+      "Postcode": "2060",
+      "Country": "AUS",
+      "UnformattedAddress": "Equifax House 15/100 Arthur Street North Sydney NSW 2060",
+      "Phone": {
+        "Numbers": {
+          "HomePhoneNumber": "0312345678",
+          "MobilePhoneNumber": "0487654321",
+          "WorkPhoneNumber": "040012312"
+        },
+        "PhoneAuthentication": {
+          "Number": "0487654321",
+          "SendPinMethod": "SMS"
+        }
+      },
+      "Employment": {
+        "Employer": "Star",
+        "Occupation": "Casino Manager",
+        "ANZSICClassCode": "9201",
+        "EmployerABN": "12345678901"
+      },
+      "EmailAddress": "harry.potter@example.com",
+      "AlternativeEmailAddress": "hpotter@example.com",
+      "DriversLicenceDetails": {
+        "StateCode": "NSW",
+        "Number": "1234567890",
+        "CardNumber": "1234512345"
+      },
+      "PassportDetails": {
+        "CountryCode": "AUS",
+        "Number": "1234567890"
+      },
+      "ImmigrationDetails": {
+        "CardNumber": "123456789",
+        "DateOfBirthOnCard": "1980"
+      },
+      "CitizenshipDetails": {
+        "StockNumber": "1234567890",
+        "DateOfAcquisition": "1980-07-31",
+        "DateOfBirthOnCertificate": "1980",
+        "PrimaryCountryOfCitizenship": "AUS",
+        "OtherCountryOfCitizenship": "NZL"
+      },
+      "RegistrationByDescentDetails": {
+        "StockNumber": "1234567890",
+        "DateOfAcquisition": "1980-07-31",
+        "DateOfBirthOnCertificate": "1980"
+      },
+      "Medicare": {
+        "CardNumber": "1234567890",
+        "ReferenceNumber": "1",
+        "MiddleNameOnCard": "J",
+        "DateOfExpiry": "2000-01-01",
+        "CardColour": "B"
+      },
+      "BirthCertificateDetails": {
+        "RegistrationNumber": "12345679890",
+        "RegistrationState": "NSW",
+        "RegistrationDate": "1980-08-02",
+        "RegisteredName": {
+          "FamilyName": "Potter",
+          "FirstGivenName": "Harry",
+          "OtherGivenName": "James"
+        },
+        "CertificateNumber": "1234567890",
+        "DateOfPrint": "2000-08-02",
+        "RegistrationDistrict": "Perth"
+      },
+      "ChangeOfNameCertificateDetails": {
+        "RegistrationNumber": "12345679890",
+        "RegistrationState": "NSW",
+        "RegisteredName": {
+          "FamilyName": "Potter",
+          "FirstGivenName": "Harry",
+          "OtherGivenName": "James"
+        },
+        "CertificateNumber": "1234567890",
+        "DateOfPrint": "2000-08-02",
+        "DateOfRegistration": "2000-08-02"
+      },
+      "MarriageCertificateDetails": {
+        "RegistrationNumber": "1234567890",
+        "RegistrationState": "NSW",
+        "RegistrationYear": "2000",
+        "MarriageDate": "2000-02-02",
+        "BridesName": {
+          "FamilyName": "Wesley",
+          "FirstGivenName": "Ginny"
+        },
+        "GroomsName": {
+          "FamilyName": "Potter",
+          "FirstGivenName": "Harry",
+          "OtherGivenName": "James"
+        },
+        "CertificateNumber": "1234567890",
+        "DateOfPrint": "2000-08-02",
+        "DateOfRegistration": "2000-08-02"
+      },
+      "CentrelinkDetails": {
+        "NameAsOnCard": "Harry Jim Potter",
+        "CustomerReferenceNumber": "1234567890",
+        "CardExpiry": "2021-09",
+        "CardType": "PCC"
+      },
+      "DeviceIntelligenceDetails": {
+        "OrgId": "ABC123",
+        "SessionId": "DEF456",
+        "Params": {
+          "Param": [
+            {
+              "Key": "org_id",
+              "Value": "ABC123"
+            }
+          ]
+        }
+      },
+      "GlobalScreeningDetails": {
+        "AssociatedCountry": "AUS"
+      }
+    }
+  },
+  "OverallOutcome": "ACCEPT",
+  "VerificationOutcome": "ACCEPT",
+  "TotalPoints": 60,
+  "Status": "New",
+  "Comment": "Request is under review"
+}

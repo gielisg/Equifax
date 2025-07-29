@@ -1,0 +1,12 @@
+E:\projects\17. apiC\new\bin\Release\net6.0\IdMatrixSoapLib.deps.json
+E:\projects\17. apiC\new\bin\Release\net6.0\IdMatrixSoapLib.dll
+E:\projects\17. apiC\new\bin\Release\net6.0\IdMatrixSoapLib.pdb
+E:\projects\17. apiC\new\obj\Release\net6.0\IdMatrixSoapLib.csproj.AssemblyReference.cache
+E:\projects\17. apiC\new\obj\Release\net6.0\IdMatrixSoapLib.GeneratedMSBuildEditorConfig.editorconfig
+E:\projects\17. apiC\new\obj\Release\net6.0\IdMatrixSoapLib.AssemblyInfoInputs.cache
+E:\projects\17. apiC\new\obj\Release\net6.0\IdMatrixSoapLib.AssemblyInfo.cs
+E:\projects\17. apiC\new\obj\Release\net6.0\IdMatrixSoapLib.csproj.CoreCompileInputs.cache
+E:\projects\17. apiC\new\obj\Release\net6.0\IdMatrixSoapLib.dll
+E:\projects\17. apiC\new\obj\Release\net6.0\refint\IdMatrixSoapLib.dll
+E:\projects\17. apiC\new\obj\Release\net6.0\IdMatrixSoapLib.pdb
+E:\projects\17. apiC\new\obj\Release\net6.0\ref\IdMatrixSoapLib.dll
